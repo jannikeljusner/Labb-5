@@ -21,7 +21,6 @@ const errorList = document.querySelector("#errorlist");
 const historySection = document.querySelector("#history");
 const deleteHistoryButton = document.querySelector("#delete");
 
-
 // Array som används för felmeddelanden
 let errors = [];
 
@@ -33,98 +32,82 @@ let history = [];
  * @returns {boolean}
  */
 function validateForm() {
-    // Kontrollera formulärets obligatoriska fält
-
-    // Visa eventuella felmeddelanden
-
-    // Returnera resultatet (true eller false) av valideringen
+  // Kontrollera formulärets obligatoriska fält
+  // Visa eventuella felmeddelanden
+  // Returnera resultatet (true eller false) av valideringen
 }
-
 
 /**
  * Visar felmeddelanden på sidan.
  */
 function displayErrors() {
-    // Rensa tidigare felmeddelanden
-
-    // Skriv ut aktuella felmeddelanden till DOM
+  // Rensa tidigare felmeddelanden
+  // Skriv ut aktuella felmeddelanden till DOM
 }
-
 
 /**
  * Skapar ett studentkort och visar det på sidan.
  */
 function createStudentCard() {
-    // Hämta information från formuläret
-
-    // Uppdatera studentkortet
-
-    // Lägg till studentkortet i historiken
-
-    // Spara och uppdatera historiken
+  // Hämta information från formuläret
+  // Uppdatera studentkortet
+  // Lägg till studentkortet i historiken
+  // Spara och uppdatera historiken
 }
-
 
 /**
  * Sparar historiken i localStorage.
  */
 function saveHistory() {
-    // Spara history i localStorage
+  // Spara history i localStorage
 }
-
 
 /**
  * Läser in tidigare historik från localStorage.
  */
 function loadHistory() {
-    // Hämta eventuell sparad historik
-
-    // Uppdatera history
+  // Hämta eventuell sparad historik
+  // Uppdatera history
 }
-
 
 /**
  * Visar historiken på sidan.
  */
 function renderHistory() {
-    // Rensa tidigare visad historik
-
-    // Skriv ut innehållet i history till DOM
+  // Rensa tidigare visad historik
+  // Skriv ut innehållet i history till DOM
 }
-
 
 /**
  * Rensar formulär, aktuellt studentkort och felmeddelanden.
  */
 function clearForm() {
-    // Återställ formulär och studentkort
-
-    // Rensa eventuella felmeddelanden
+  // Återställ formulär och studentkort
+  // Rensa eventuella felmeddelanden
 }
-
 
 /**
  * Raderar hela historiken.
  */
 function deleteHistory() {
-    // Radera sparad historik
-
-    // Uppdatera history och visningen på sidan
+  // Radera sparad historik
+  // Uppdatera history och visningen på sidan
 }
-
 
 // Eventlyssnare
 
 // När formuläret skickas:
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  console.log("Formuläret skickades och dörrvakten stoppade omladdningen!");
+});
 // - validera inmatningen
 // - skapa studentkort om valideringen lyckas
 
-
 // När användaren klickar på "Rensa"
 
-
 // När användaren klickar på "Radera historik"
-
 
 // När sidan laddas:
 // - läs in och visa eventuell tidigare historik
