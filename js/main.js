@@ -107,7 +107,23 @@ form.addEventListener("submit", function (event) {
 
 // När användaren klickar på "Rensa"
 
+clearButton.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  console.log("Rensa-knappen klickades!");
+});
+
 // När användaren klickar på "Radera historik"
 
+deleteHistoryButton.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  console.log("Radera Historik-knappen klickades!");
+});
+
 // När sidan laddas:
+
+window.addEventListener("DOMContentLoaded", function () {
+  console.log("Sidan har laddats!");
+});
 // - läs in och visa eventuell tidigare historik
