@@ -92,6 +92,16 @@ function saveHistory() {
 }
 // 5. Hämtar från LocalStorage (HÄR SKA VI KODA SEN)
 function loadHistory() {}
+function loadHistory() {
+  // 1. Hämta textsträngen från LocalStorage
+  let savedData = localStorage.getItem("savedStudents");
+
+  // 2. Kolla om det fanns någon sparad data (om den inte är null)
+  if (savedData !== null) {
+    // 3. Förvandla texten tillbaka till en riktig array och lägg i history-variabeln
+    history = JSON.parse(savedData);
+  }
+}
 
 // 6. Ritar ut historiken på skärmen (HÄR SKA VI KODA SEN)
 function renderHistory() {}
@@ -137,5 +147,9 @@ deleteHistoryButton.addEventListener("click", function (event) {
 
 // När hela sidan laddas första gången
 window.addEventListener("DOMContentLoaded", function () {
-  // (HÄR SKA VI KODA SEN)
+  loadHistory();
+  console.log(
+    "Sidan laddades och historiken hämtades. Så här ser arrayen ut nu:",
+    history,
+  );
 });
