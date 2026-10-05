@@ -1,12 +1,9 @@
 "use strict";
-/*
- * Laboration 5 - Studentkortsgenerator
- * Namn: DITT NAMN
- */
 
-// Hämta element från DOM
+// --- HÄMTA ELEMENT FRÅN HTML ---
 const form = document.querySelector("#studentform");
 const clearButton = document.querySelector("#clear");
+const deleteHistoryButton = document.querySelector("#delete");
 
 const fullnameInput = document.querySelector("#fullname");
 const emailInput = document.querySelector("#email");
@@ -19,37 +16,27 @@ const previewPhone = document.querySelector("#previewphone");
 
 const errorList = document.querySelector("#errorlist");
 const historySection = document.querySelector("#history");
-const deleteHistoryButton = document.querySelector("#delete");
 
-// Array som används för felmeddelanden
+// --- VARIABLER ---
 let errors = [];
-
-// Array som innehåller sparade studentkort
 let history = [];
 
-/**
- * Validerar formulärets inmatning.
- * @returns {boolean}
- */
+// --- FUNKTIONER ---
+
+// 1. Kollar om fälten är tomma
 function validateForm() {
-  // Töm gamla felmeddelanden innan vi kollar på nytt
   errors = [];
-  // Kontrollera formulärets obligatoriska fält
+
   if (fullnameInput.value.trim() === "") {
     errors.push("Du måste ange ett namn.");
   }
-
   if (emailInput.value.trim() === "") {
     errors.push("Du måste ange en emailadress.");
   }
-
   if (phoneInput.value.trim() === "") {
     errors.push("Du måste ange ett telefonnummer.");
   }
-  // Töm gamla felmeddelanden
-  // Visa eventuella felmeddelanden
-  // Returnera resultatet (true eller false) av valideringen
-  // Returnera true om inga fel finns, annars false
+
   if (errors.length === 0) {
     return true;
   } else {
@@ -57,97 +44,79 @@ function validateForm() {
   }
 }
 
-/**
- * Visar felmeddelanden på sidan.
- */
+// 2. Skriver ut felen som en lista på skärmen
 function displayErrors() {
-  // Rensa tidigare felmeddelanden
-  // Skriv ut aktuella felmeddelanden till DOM
+  errorList.innerHTML = "";
+
+  errors.forEach(function (error) {
+    let li = document.createElement("li");
+    li.textContent = error;
+    errorList.appendChild(li);
+  });
 }
 
-/**
- * Skapar ett studentkort och visar det på sidan.
- */
+// 3. Bygger själva studentkortet
 function createStudentCard() {
-  // Hämta information från formuläret
-  // Uppdatera studentkortet
-  // Lägg till studentkortet i historiken
-  // Spara och uppdatera historiken
+  // 1. Skicka texten från formuläret till studentkortet
+  previewFullname.textContent = fullnameInput.value;
+  previewEmail.textContent = emailInput.value;
+  previewPhone.textContent = phoneInput.value;
+
+  // 2. Ändra typsnittet på texten baserat på vad man valt i rullistan
+  previewFullname.style.fontFamily = fontSelect.value;
+  previewEmail.style.fontFamily = fontSelect.value;
+  previewPhone.style.fontFamily = fontSelect.value;
 }
 
-/**
- * Sparar historiken i localStorage.
- */
-function saveHistory() {
-  // Spara history i localStorage
-}
+// 4. Sparar till LocalStorage (HÄR SKA VI KODA SEN)
+function saveHistory() {}
 
-/**
- * Läser in tidigare historik från localStorage.
- */
-function loadHistory() {
-  // Hämta eventuell sparad historik
-  // Uppdatera history
-}
+// 5. Hämtar från LocalStorage (HÄR SKA VI KODA SEN)
+function loadHistory() {}
 
-/**
- * Visar historiken på sidan.
- */
-function renderHistory() {
-  // Rensa tidigare visad historik
-  // Skriv ut innehållet i history till DOM
-}
+// 6. Ritar ut historiken på skärmen (HÄR SKA VI KODA SEN)
+function renderHistory() {}
 
-/**
- * Rensar formulär, aktuellt studentkort och felmeddelanden.
- */
-function clearForm() {
-  // Återställ formulär och studentkort
-  // Rensa eventuella felmeddelanden
-}
+// 7. Tömmer formuläret (HÄR SKA VI KODA SEN)
+function clearForm() {}
 
-/**
- * Raderar hela historiken.
- */
-function deleteHistory() {
-  // Radera sparad historik
-  // Uppdatera history och visningen på sidan
-}
+// 8. Raderar all historik (HÄR SKA VI KODA SEN)
+function deleteHistory() {}
 
-// Eventlyssnare
+// --- EVENTLYSSNARE (Klick och sidladdning) ---
 
-// När formuläret skickas:
+// När man klickar på "Skicka"
 form.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  // Anropa valideringen och spara svaret (true eller false)
   let isValid = validateForm();
 
-  console.log("Gick valideringen igenom?", isValid);
-  console.log("Aktuella fel i arrayen:", errors);
+  if (isValid === false) {
+    displayErrors();
+  } else {
+    // Rensa eventuella gamla felmeddelanden från skärmen
+    errorList.innerHTML = "";
+
+    // Bygg studentkortet!
+    createStudentCard();
+  }
 });
-// - validera inmatningen
-// - skapa studentkort om valideringen lyckas
 
-// När användaren klickar på "Rensa"
-
+// När man klickar på "Rensa"
 clearButton.addEventListener("click", function (event) {
   event.preventDefault();
 
-  console.log("Rensa-knappen klickades!");
+  // (HÄR SKA VI KODA SEN)
 });
 
-// När användaren klickar på "Radera historik"
-
+// När man klickar på "Radera historik"
 deleteHistoryButton.addEventListener("click", function (event) {
   event.preventDefault();
 
-  console.log("Radera Historik-knappen klickades!");
+  // (HÄR SKA VI KODA SEN)
 });
 
-// När sidan laddas:
-
+// När hela sidan laddas första gången
 window.addEventListener("DOMContentLoaded", function () {
-  console.log("Sidan har laddats!");
+  // (HÄR SKA VI KODA SEN)
 });
-// - läs in och visa eventuell tidigare historik
