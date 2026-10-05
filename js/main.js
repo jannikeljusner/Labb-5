@@ -94,7 +94,6 @@ function saveHistory() {
   localStorage.setItem("savedStudents", historyString);
 }
 // 5. Hämtar från LocalStorage (HÄR SKA VI KODA SEN)
-function loadHistory() {}
 function loadHistory() {
   let savedData = localStorage.getItem("savedStudents");
 
@@ -132,7 +131,19 @@ function renderHistory() {
 }
 
 // 7. Tömmer formuläret (HÄR SKA VI KODA SEN)
-function clearForm() {}
+function clearForm() {
+  // 1. Tömmer alla inmatningsfält i formuläret
+  form.reset();
+
+  // 2. Raderar arrayen med fel och tömmer listan på skärmen
+  errors = [];
+  errorList.innerHTML = "";
+
+  // 3. Tömmer texten på själva studentkortet
+  previewFullname.textContent = "";
+  previewEmail.textContent = "";
+  previewPhone.textContent = "";
+}
 
 // 8. Raderar all historik (HÄR SKA VI KODA SEN)
 function deleteHistory() {}
@@ -160,8 +171,11 @@ form.addEventListener("submit", function (event) {
 clearButton.addEventListener("click", function (event) {
   event.preventDefault();
 
-  // (HÄR SKA VI KODA SEN)
+  // Anropa funktionen som rensar formuläret och kortet
+  clearForm();
 });
+
+// (HÄR SKA VI KODA SEN)
 
 // När man klickar på "Radera historik"
 deleteHistoryButton.addEventListener("click", function (event) {
