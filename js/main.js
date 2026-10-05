@@ -80,6 +80,9 @@ function createStudentCard() {
 
   // 5. Spara till LocalStorage
   saveHistory();
+
+  // 6. Rita om historiken på sidan så det nya kortet syns direkt!
+  renderHistory();
 }
 
 // 4. Sparar till LocalStorage (HÄR SKA VI KODA SEN)
@@ -93,18 +96,40 @@ function saveHistory() {
 // 5. Hämtar från LocalStorage (HÄR SKA VI KODA SEN)
 function loadHistory() {}
 function loadHistory() {
-  // 1. Hämta textsträngen från LocalStorage
   let savedData = localStorage.getItem("savedStudents");
 
-  // 2. Kolla om det fanns någon sparad data (om den inte är null)
   if (savedData !== null) {
-    // 3. Förvandla texten tillbaka till en riktig array och lägg i history-variabeln
     history = JSON.parse(savedData);
   }
+
+  // Rita ut historiken när sidan laddas!
+  renderHistory();
 }
 
 // 6. Ritar ut historiken på skärmen (HÄR SKA VI KODA SEN)
-function renderHistory() {}
+function renderHistory() {
+  // 1. Töm historiken på sidan så vi inte får dubbletter när listan ritas om
+  historySection.innerHTML = "";
+
+  // 2. Loopa igenom varje sparad student i vår array
+  history.forEach(function (student) {
+    // Skapa en ny HTML-låda (div) för historikkortet
+    let cardDiv = document.createElement("div");
+
+    // Använd vald font på kortet
+    cardDiv.style.fontFamily = student.font;
+
+    // Fyll lådan med studentens information
+    cardDiv.innerHTML = `
+      <h3>${student.fullname}</h3>
+      <p>${student.email}</p>
+      <p>${student.phone}</p>
+    `;
+
+    // Klistra fast lådan i historik-sektionen på webbsidan
+    historySection.appendChild(cardDiv);
+  });
+}
 
 // 7. Tömmer formuläret (HÄR SKA VI KODA SEN)
 function clearForm() {}
