@@ -62,15 +62,34 @@ function createStudentCard() {
   previewEmail.textContent = emailInput.value;
   previewPhone.textContent = phoneInput.value;
 
-  // 2. Ändra typsnittet på texten baserat på vad man valt i rullistan
+  // 2. Ändra typsnittet
   previewFullname.style.fontFamily = fontSelect.value;
   previewEmail.style.fontFamily = fontSelect.value;
   previewPhone.style.fontFamily = fontSelect.value;
+
+  // 3. Skapa ett objekt med all data
+  let studentObject = {
+    fullname: fullnameInput.value,
+    email: emailInput.value,
+    phone: phoneInput.value,
+    font: fontSelect.value,
+  };
+
+  // 4. Lägg in objektet överst i historik-arrayen
+  history.unshift(studentObject);
+
+  // 5. Spara till LocalStorage
+  saveHistory();
 }
 
 // 4. Sparar till LocalStorage (HÄR SKA VI KODA SEN)
-function saveHistory() {}
+function saveHistory() {
+  // Gör om hela arrayen till en textsträng (JSON)
+  let historyString = JSON.stringify(history);
 
+  // Spara strängen i webbläsarens minne under namnet "savedStudents"
+  localStorage.setItem("savedStudents", historyString);
+}
 // 5. Hämtar från LocalStorage (HÄR SKA VI KODA SEN)
 function loadHistory() {}
 
