@@ -146,7 +146,16 @@ function clearForm() {
 }
 
 // 8. Raderar all historik (HÄR SKA VI KODA SEN)
-function deleteHistory() {}
+function deleteHistory() {
+  // 1. Töm själva arrayen
+  history = [];
+
+  // 2. Ta bort den sparade datan från LocalStorage
+  localStorage.removeItem("savedStudents");
+
+  // 3. Rita om historiken på webbsidan (som nu blir tom)
+  renderHistory();
+}
 
 // --- EVENTLYSSNARE (Klick och sidladdning) ---
 
@@ -181,7 +190,8 @@ clearButton.addEventListener("click", function (event) {
 deleteHistoryButton.addEventListener("click", function (event) {
   event.preventDefault();
 
-  // (HÄR SKA VI KODA SEN)
+  // Anropa funktionen som raderar all historik
+  deleteHistory();
 });
 
 // När hela sidan laddas första gången
