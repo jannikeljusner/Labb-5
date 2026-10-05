@@ -32,9 +32,29 @@ let history = [];
  * @returns {boolean}
  */
 function validateForm() {
+  // Töm gamla felmeddelanden innan vi kollar på nytt
+  errors = [];
   // Kontrollera formulärets obligatoriska fält
+  if (fullnameInput.value.trim() === "") {
+    errors.push("Du måste ange ett namn.");
+  }
+
+  if (emailInput.value.trim() === "") {
+    errors.push("Du måste ange en emailadress.");
+  }
+
+  if (phoneInput.value.trim() === "") {
+    errors.push("Du måste ange ett telefonnummer.");
+  }
+  // Töm gamla felmeddelanden
   // Visa eventuella felmeddelanden
   // Returnera resultatet (true eller false) av valideringen
+  // Returnera true om inga fel finns, annars false
+  if (errors.length === 0) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 /**
@@ -100,7 +120,11 @@ function deleteHistory() {
 form.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  console.log("Formuläret skickades och dörrvakten stoppade omladdningen!");
+  // Anropa valideringen och spara svaret (true eller false)
+  let isValid = validateForm();
+
+  console.log("Gick valideringen igenom?", isValid);
+  console.log("Aktuella fel i arrayen:", errors);
 });
 // - validera inmatningen
 // - skapa studentkort om valideringen lyckas
